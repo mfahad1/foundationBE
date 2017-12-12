@@ -17,11 +17,12 @@ export const signUp = async (ctx , next) =>  {
   // const promise = await user.save();
   // ctx.body = promise;
   const payload = {
-    username: ctx.body.username,
-    pass
+    email: ctx.request.body.email,
+    password: ctx.request.body.password,
+    phone: ctx.request.body.phone,
   }
-    const promise = await createUser(ctx.request.body);
-    ctx.body = promise;
+  const promise = await createUser(payload);
+  ctx.body = promise;
 
 };
 

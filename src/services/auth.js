@@ -1,26 +1,33 @@
 import * as repo from '../repositories/user'
 import * as validator from '../validators/auth'
 
-export const createUser = (payload) => {
+export const createUser = async (payload) => {
 
   const req = {
-    username : payload.username,
+    email: payload.email,
     password : payload.password,
+    phone: payload.phone,
   }
 
   const error = validator.authValidator(req);
   
   if(error) {
     throw new Error(error.message);
+  }
+
+  const user = await repo.FindUser({ email: payload.email });
+
+  if (user) {
+    throw new Error('Email Already Exist');
   }
 
   return repo.CreateUser(req);
 }
 
-export const findUser = (payload) => {
+export const findUser = async (payload) => {
 
   const req = {
-    username : payload.username,
+    email: payload.email,
     password : payload.password,
   }
 
@@ -29,6 +36,10 @@ export const findUser = (payload) => {
   if(error) {
     throw new Error(error.message);
   }
-  return repo.FindUser(req);
+  const user = await repo.FindUser(req);
+
+  if (user)
+    return user;
+  throw new Error('No User Found');
   
 }

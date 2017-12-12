@@ -60,3 +60,13 @@ export const getByAreaId = (payload) => {
   return repo.get({ areaId: payload.id });
 
 }
+
+export const searchDistrict = (payload) => {
+  console.log(payload);
+  if (payload.district) 
+    return repo.getDistrictByName({ districtQuery: payload.district });
+  else if (payload.category)
+    return repo.getDistrictByCategory({ categoryQuery: payload.category });
+  else 
+    return repo.getAll();
+}

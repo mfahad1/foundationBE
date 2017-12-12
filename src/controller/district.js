@@ -8,7 +8,7 @@ export const post = async (ctx , next) =>  {
 
 export const insertCategory = async (ctx , next) =>  {
   const allReq = Object.assign({}, ctx.request.body, ctx.params);
-  
+  console.log('req', allReq);
   const promise = await districtService.insertCategory(allReq);
   ctx.body = promise;
  
@@ -24,7 +24,7 @@ export const updateCategory = async (ctx , next) =>  {
 
 export const getAll = async (ctx) =>  {
   
-  const promise = await categoryService.getAll();
+  const promise = await districtService.getAll();
   ctx.body = promise;
  
 };
@@ -38,5 +38,11 @@ export const getById = async (ctx) => {
 
 export const getByAreaId = async (ctx) => {
   const promise = await categoryService.getByAreaId(ctx.params);
+  ctx.body = promise;
+}
+
+export const searchDistrict = async (ctx) => {
+  const promise = await districtService.searchDistrict(ctx.query);
+  console.log('promise::', promise);
   ctx.body = promise;
 }

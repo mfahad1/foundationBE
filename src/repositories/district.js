@@ -15,7 +15,7 @@ export const create = async (payload) => {
     const category = await categoryModal.findOne({ _id: payload.categoryId });
     console.log('in repo category' , category);
     districtObj.category.push({
-      category: category.name,
+      categoryName: category.name,
       priceAvg: payload.priceAvg,
       priceCategory: payload.priceCategory,
       priceGeneral: payload.priceGeneral,
@@ -31,7 +31,8 @@ export const insertCategory = async (payload) => {
 
   const category = await categoryModal.findOne({ _id: payload.categoryId });
   const categoryObj = {
-    category: category.name,
+    _id: category._id,
+    categoryName: category.name,
     priceAvg: payload.priceAvg,
     priceCategory: payload.priceCategory,
     priceGeneral: payload.priceGeneral,
@@ -64,4 +65,19 @@ export const get = (payload) => {
 
 export const getAll = () => {
   return districtModal.find({});
+}
+
+
+export const getDistrictByCategory = ({ categoryQuery }) => {
+  console.log('categoryQuery', regexMaker(categoryQuery));
+  return districtModal.find({ category: { $elemMatch: { categoryName: regexMaker(categoryQuery) } } }, { "category.$": 1, "areaId": 1, "name": 1 })
+
+}
+
+export const getDistrictByName = ({ districtQuery }) => {
+  return districtModal.find({ name: regexMaker(districtQuery) })
+}
+
+const regexMaker = (query) => {
+  return new RegExp('\.*' + query + '\.*', 'i')
 }

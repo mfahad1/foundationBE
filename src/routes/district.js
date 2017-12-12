@@ -45,10 +45,12 @@ router.post('/', districtCtrl.post );
 
 router.post('/insert_category/:id', districtCtrl.insertCategory );
 router.put('/update_category/:id', districtCtrl.updateCategory );
+router.get('/', districtCtrl.getAll);
+router.get('/search_district', districtCtrl.searchDistrict);
+
 // router.get('/:id', categoryCtrl.getById );
 // router.get('/area_id/:id', categoryCtrl.getByAreaId);
 
-// router.get('/', userCtrl.getAll );
 // router.get('/:id', userCtrl.get );
 // router.put('/:id', userCtrl.put );
 
