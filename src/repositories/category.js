@@ -9,6 +9,6 @@ export const get = (payload) => {
   return categoryModal.findOne(payload);
 }
 
-export const getAll = () => {
-  return categoryModal.find({});
+export const getAll = (param = {}) => {
+  return categoryModal.find(param);
 }

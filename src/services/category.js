@@ -29,6 +29,6 @@ export const getById = (payload) => {
 
 export const getByAreaId = (payload) => {
   
-  return repo.get({ areaId: payload.id });
+  return repo.getAll({ areaId: payload.id });
 
 }
