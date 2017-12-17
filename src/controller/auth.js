@@ -17,8 +17,8 @@ export const signUp = async (ctx , next) =>  {
   // const promise = await user.save();
   // ctx.body = promise;
   const payload = {
-    email: ctx.request.body.email,
-    password: ctx.request.body.password,
+    email: (ctx.request.body.email).toLowerCase(),
+    password: (ctx.request.body.password).toLowerCase(),
     phone: ctx.request.body.phone,
   }
   const promise = await createUser(payload);
@@ -28,7 +28,7 @@ export const signUp = async (ctx , next) =>  {
 
 
 export const signIn = async (ctx) =>  {
-  
+  console.log('here');
   const promise = await findUser(ctx.request.body);
   ctx.body = promise;
  

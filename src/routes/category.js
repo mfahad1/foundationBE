@@ -5,15 +5,7 @@ const router = new Router({
   prefix: '/category',
 });
 
-/**
- * @api {post} /area/ post area
- * @apiName Area
- * @apiGroup Area
- *
- * @apiParam {String} name .
- *
- * @apiSuccess {String} name of the Are.
- */
+
 
 router.post('/', categoryCtrl.post );
 router.get('/', categoryCtrl.getAll );

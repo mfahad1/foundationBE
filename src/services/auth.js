@@ -27,8 +27,8 @@ export const createUser = async (payload) => {
 export const findUser = async (payload) => {
 
   const req = {
-    email: payload.email,
-    password : payload.password,
+    email: (payload.email).toLowerCase(),
+    password: (payload.password).toLowerCase(),
   }
 
   const error = validator.authValidator(req);
